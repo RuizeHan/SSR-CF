@@ -1,0 +1,33 @@
+function Visualization(bSaveImage, useCSR, frame, im, pos, target_sz)
+
+if bSaveImage
+    rect_position_vis = [pos([2,1]) - (target_sz([2,1]) - 1)/2, target_sz([2,1])];
+    im_to_show = double(im)/255;
+    if size(im_to_show,3) == 1
+        im_to_show = repmat(im_to_show, [1 1 3]);
+    end
+    if frame == 1
+        figure
+        imagesc(im_to_show);
+        hold on;
+        rectangle('Position',rect_position_vis, 'EdgeColor','g', 'LineWidth',2);
+        text(10, 10, int2str(frame), 'color', [0 1 1]);
+        hold off;
+        axis off;axis image;set(gca, 'Units', 'normalized', 'Position', [0 0 1 1])
+    else
+        imagesc(im_to_show);
+        hold on;
+        if useCSR
+            edgecolor = 'b';
+        else
+            edgecolor = 'g';
+        end
+        rectangle('Position',rect_position_vis, 'EdgeColor',edgecolor, 'LineWidth',2);
+        text(10, 10, int2str(frame), 'color', [0 1 1]);
+        hold off;
+        axis off;axis image;set(gca, 'Units', 'normalized', 'Position', [0 0 1 1])
+    end
+    drawnow
+end
+
+end
