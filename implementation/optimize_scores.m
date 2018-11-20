@@ -1,4 +1,4 @@
-function [max_scale_response, disp_row, disp_col, scale_ind] = optimize_scores(scores_fs, iterations, ky, kx)
+function [max_scale_response, response_map,disp_row, disp_col, scale_ind] = optimize_scores(scores_fs, iterations, ky, kx)
 
 % Maximizes the continuous convolution response (classification scores).
 
@@ -76,4 +76,8 @@ max_pos_x(ind) = init_pos_x(ind);
 % Scale the coordinate system to output_sz
 disp_row = (mod(max_pos_y(1,1,scale_ind) + pi, 2*pi) - pi) / (2*pi) * output_sz(1);
 disp_col = (mod(max_pos_x(1,1,scale_ind) + pi, 2*pi) - pi) / (2*pi) * output_sz(2);
+
+% return response map
+response_map = ifftshift(ifftshift(sampled_scores(:,:,scale_ind),1),2);
+
 end

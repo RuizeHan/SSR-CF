@@ -32,10 +32,10 @@ if data.seq.frame > 1
         scores_fs = ifftshift(ifftshift(permute(sum(cell2mat(scores_fs_feat), 3), [1 2 4 3]), 1), 2);
         
         % Optimize the continuous score function with Newton's method.
-        [max_scale_response, trans_row, trans_col, scale_ind] = optimize_scores(scores_fs, params.newton_iterations, data.setup.ky_tp, data.setup.kx_tp);
+        [max_scale_response, response_map,trans_row, trans_col, scale_ind] = optimize_scores(scores_fs, params.newton_iterations, data.setup.ky_tp, data.setup.kx_tp);
             
         %% perform selector
-        slt_response = scores_fs(:,:,scale_ind);
+        slt_response = response_map;
         if params.enableCSR && ~isempty(data.reg.model)
             params.selector  = cal_selector(data.reg.model,slt_response);
         end
@@ -136,8 +136,13 @@ if data.seq.frame > 1
                 end
                 classes = unique(gt_data);
                 if numel(classes)>1
-                    data.reg.model = train_svm(train_set);
+                    try 
+                        data.reg.model = train_svm(train_set);
                     %                     trainstate = 1;
+                    
+                    catch
+                        ti = ti;
+                    end
                 end
             end
         end

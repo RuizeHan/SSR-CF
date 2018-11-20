@@ -2,10 +2,10 @@ function training_rl()
 
 clear
 close all
-base_path = 'C:\Users\ASUS\Desktop\tracker_benchmark_v1.0\trackers\CCOTSSR';
+base_path = 'D:\tracking\OTB\tracker_benchmark_v1.0\trackers\CCOTSSR';
 addpath(base_path);
 
-pathAnno = 'C:\Users\ASUS\Desktop\tracker_benchmark_v1.0\anno\';
+pathAnno = 'D:\tracking\OTB\tracker_benchmark_v1.0\anno\';
 save_path = fullfile(base_path,'/training/train_results');
 trainstate=1;
 seqs = configSeqs_rl;
@@ -160,13 +160,21 @@ switch s.name(1:end-2)
 %      case 'freeman4'
 %         syn_s.thr_small=0.04;
 %         syn_s.thr_large=0.75;
-%
+%         
 %      case 'ironman'
 %         syn_s.thr_small=0.04;
 %         syn_s.thr_large=0.12;
         
+%     case 'motorrolling'
+%         syn_s.thr_small=0.04;
+%         syn_s.thr_large=0.25;  
+    
+%     case 'skiing'
+%         syn_s.thr_small=0.75;
+%         syn_s.thr_large=0.2;  
+        
     otherwise
-        syn_s.thr_small=0.04;
+        syn_s.thr_small=0.05;
         syn_s.thr_large=0.15;         
 end
 
