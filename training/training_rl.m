@@ -129,49 +129,41 @@ for si = 3:seq_len
 end
 
 switch s.name(1:end-2)
-    case 'fish'
-        syn_s.thr_small=0.05;
-        syn_s.thr_large=0.15;
-    case 'freeman3'
-        syn_s.thr_small=0.1;
-        syn_s.thr_large=0.25;    
-    case 'mountainbike'
-        syn_s.thr_small=0.04;
-        syn_s.thr_large=0.15; 
-    % fine-tune   
-    case 'lemming'
-        syn_s.thr_small=0.15;
-        syn_s.thr_large=0.15; 
-    case 'girl'
-        syn_s.thr_small=0.1;
-        syn_s.thr_large=0.25;    
-    case 'soccer'
-        syn_s.thr_small=0.02;
-        syn_s.thr_large=0.15; 
-        
-     case 'singer2'
-        syn_s.thr_small=0.04;
-        syn_s.thr_large=0.25;
-        
-     case 'freeman1'
-        syn_s.thr_small=0.04;
-        syn_s.thr_large=0.25;
-        
-     case 'freeman4'
-        syn_s.thr_small=0.04;
-        syn_s.thr_large=0.75;
-        
-     case 'ironman'
-        syn_s.thr_small=0.04;
-        syn_s.thr_large=0.12;
-        
-%     case 'motorrolling'
+%     case 'fish'
+%         syn_s.thr_small=0.05;
+%         syn_s.thr_large=0.15;
+%     case 'freeman3'
+%         syn_s.thr_small=0.1;
+%         syn_s.thr_large=0.25;    
+%     case 'mountainbike'
 %         syn_s.thr_small=0.04;
-%         syn_s.thr_large=0.25;  
-    
-%     case 'skiing'
-%         syn_s.thr_small=0.75;
-%         syn_s.thr_large=0.2;  
+%         syn_s.thr_large=0.15; 
+%     % fine-tune   
+%     case 'lemming'
+%         syn_s.thr_small=0.15;
+%         syn_s.thr_large=0.15; 
+%     case 'girl'
+%         syn_s.thr_small=0.1;
+%         syn_s.thr_large=0.25;    
+%     case 'soccer'
+%         syn_s.thr_small=0.02;
+%         syn_s.thr_large=0.15; 
+%         
+%      case 'singer2'
+%         syn_s.thr_small=0.04;
+%         syn_s.thr_large=0.25;
+%         
+%      case 'freeman1'
+%         syn_s.thr_small=0.04;
+%         syn_s.thr_large=0.25;
+%         
+%      case 'freeman4'
+%         syn_s.thr_small=0.04;
+%         syn_s.thr_large=0.75;
+%
+%      case 'ironman'
+%         syn_s.thr_small=0.04;
+%         syn_s.thr_large=0.12;
         
     otherwise
         syn_s.thr_small=0.04;

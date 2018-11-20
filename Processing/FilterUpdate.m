@@ -62,7 +62,7 @@ switch selector
 end
 filter = getfield(data,ftype);
 
-if data.seq.frame == 1
+if data.seq.frame == 1 ||selector==-1
     % Initialize the filter
     filter.hf = cell(1,1,data.setup.num_feature_blocks);
     for k = 1:data.setup.num_feature_blocks
@@ -72,7 +72,11 @@ if data.seq.frame == 1
     % Initialize Conjugate Gradient parameters
     filter.p = [];
     filter.rho = [];
-    max_CG_iter = params.init_max_CG_iter;
+    if selector ==-1
+        max_CG_iter = params.max_CG_iter;
+    else
+        max_CG_iter = params.init_max_CG_iter;
+    end
     filter.sample_energy = new_sample_energy;
 else
     max_CG_iter = params.max_CG_iter;
@@ -87,7 +91,8 @@ else
     
     % Update the approximate average sample energy using the learning
     % rate. This is only used to construct the preconditioner.
-    filter.sample_energy = cellfun(@(se, nse) (1 - params.learning_rate) * se + params.learning_rate * nse, filter.sample_energy, new_sample_energy, 'uniformoutput', false);
+    filter.sample_energy = cellfun(@(se, nse) (1 - params.learning_rate) * se + params.learning_rate * nse,...
+        filter.sample_energy, new_sample_energy, 'uniformoutput', false);
 end
 
 % Construct preconditioner
